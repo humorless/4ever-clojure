@@ -57,11 +57,6 @@
 (defn view []
   [:div
    [:p
-    "Keeping 4clojure alive forever! This website is completely static and evals
-     code using sci. Suggestions / PRs welcome at "
-    [:a {:href "https://github.com/oxalorg/4ever-clojure"}
-     "github.com/oxalorg/4ever-clojure"]]
-   [:p
     "Please note that 4ever-clojure is evaluated completely in the browser. So
     not all Java interop works, but some of it is the same in JS if you're
     lucky. Check "
