@@ -16,19 +16,20 @@
 
 (defn header []
   [:header
-   [:h1 "4ever-clojure"]
+   [:h1 "20 hours Clojure"]
    [:p
     [:small
      [:a {:href (rfe/href :home)
           :data-reitit-handle-click false} "home"]
      " | "
-     [:a {:href "https://github.com/oxalorg/4ever-clojure"} "github"]
+     [:a {:href "https://github.com/humorless/4ever-clojure"} "github"]
      " | "
-     "Built with ❤ by "
-     [:a {:href "https://twitter.com/oxalorg"} "@oxalorg"]
-     " and "
-     [:a {:href "https://twitter.com/borkdude"} "@borkdude"]]]
-   notification])
+     "Built by "
+     [:a {:href "https://replware.dev"} "Laurence Chen"]
+     [:br]
+     "With 99% code reuse from "
+     [:a {:href "https://4clojure.oxal.org/"} "4ever-clojure"]]]
+   #_notification])
 
 (defn main []
   [:div

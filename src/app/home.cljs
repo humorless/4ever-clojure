@@ -56,8 +56,16 @@
 
 (defn view []
   [:div
+   [:h2 "Rationale: Why another 4clojure website?"]
    [:p
-    "Please note that 4ever-clojure is evaluated completely in the browser. So
+    "According to Josh Kaufman, it is possible to acquire a new skill within the 
+    first 20 hours. However, if I let ordinary people use the original 4clojure
+    website to start, many of them still need some help to overcome certain bottlenecks.
+    That is why I built this. All the problems are deliberately designed to ensure 
+    that ordinary people can learn some Clojure knowledge here in their first 20 
+    hours of Clojure practice."]
+   [:p
+    "Please note that this website is evaluated completely in the browser. So
     not all Java interop works, but some of it is the same in JS if you're
     lucky. Check "
     [:a {:href "https://cljs.info/cheatsheet/"} "cljs-cheatsheet"]
