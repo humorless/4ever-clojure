@@ -215,13 +215,13 @@ and subs extracts substrings. The trim function removes whitespace
     :difficulty "elementary"
     :tags []}
 
-   {:title       "Empty"
+   {:title       "Is a collection empty?"
     :tests       ["(= __ (empty? [3 4 5]))"]
     :description "The empty? function checks if a collection is empty."
     :difficulty "elementary"
     :tags []}
 
-   {:title       "Count"
+   {:title       "How many items are there in a collection?"
     :tests       ["(= __ (count '(1 2 3)))"
                   "(= __ (count [1 2 3]))"
                   "(= __ (count #{:a :b :c}))"
@@ -414,29 +414,8 @@ Filter returns a new sequence consisting
 of all the items of s for which (f item) returns true."
     :difficulty "elementary"
     :tags []}
-   {:id         37
-    :title       "Regular Expressions"
-    :tests       ["(= __ (apply str (re-seq #\"[A-Z]+\" \"bA1B3Ce \")))"]
-    :description "Regex patterns are supported with a special reader macro."
-    :difficulty "elementary"
-    :tags ["regex" "syntax"]}
-   {:id         52
-    :title       "Intro to Destructuring"
-    :tests       ["(= [2 4] (let [[a b c d e f g] (range)] __))"]
-    :description "Let bindings and function parameter lists
-support destructuring."
-    :difficulty "elementary"
-    :tags ["destructuring"]}
-   {:id         57
-    :title       "Simple Recursion"
-    :tests       ["(= __ ((fn foo [x] (when (> x 0) (conj (foo (dec x)) x))) 5))"]
-    :description "A recursive function is a function which calls itself.
-This is one of the fundamental techniques
-used in functional programming."
-    :difficulty "elementary"
-    :tags ["recursion"]}
    {:id         64
-    :title       "Intro to Reduce"
+    :title       "reduce"
     :tests       ["(= 15 (reduce __ [1 2 3 4 5]))"
                   "(=  0 (reduce __ []))"
                   "(=  6 (reduce __ 1 [2 3]))"]
@@ -450,6 +429,14 @@ thus reducing the entire collection to one value.
 Don't worry, it's not as complicated as it sounds."
     :difficulty "elementary"
     :tags ["seqs"]}
+   {:id         57
+    :title       "Simple Recursion"
+    :tests       ["(= __ ((fn foo [x] (when (> x 0) (conj (foo (dec x)) x))) 5))"]
+    :description "A recursive function is a function which calls itself.
+This is one of the fundamental techniques
+used in functional programming."
+    :difficulty "elementary"
+    :tags ["recursion"]}
    {:id         68
     :title       "Recurring Theme"
     :tests       ["(= __\n  (loop [x 5\n         result []]\n    (if (> x 0)\n      (recur (dec x) (conj result (+ 2 x)))\n      result)))"]
@@ -462,6 +449,44 @@ Recur must be called from the tail-position,
 and calling it elsewhere will result in an error."
     :difficulty "elementary"
     :tags ["recursion"]}
+;; till here. We have basic functions/control structure: local variable, fn, conditionals, recursive, sequence 
+   {:id         52
+    :title       "Intro to Destructuring"
+    :tests       ["(= [2 4] (let [[a b c d e f g] (range)] __))"]
+    :description "Let bindings and function parameter lists
+support destructuring."
+    :difficulty "elementary"
+    :tags ["destructuring"]}
+   {:id         156
+    :title       "Map Defaults"
+    :description "When retrieving values from a map, you can specify default
+values in case the key is not found:
+
+(= 2 (:foo {:bar 0, :baz 1} 2))
+
+However, what if you want the map itself to contain the default values? Write a
+function which takes a default value and a sequence of keys and constructs a map."
+    :tests       ["(= (__ 0 [:a :b :c]) {:a 0 :b 0 :c 0})"
+                  "(= (__ \"x\" [1 2 3]) {1 \"x\" 2 \"x\" 3 \"x\"})"
+                  "(= (__ [:a :b] [:foo :bar]) {:foo [:a :b] :bar [:a :b]})"]
+    :difficulty "elementary"
+    :tags ["seqs"]}
+   {:id         161
+    :title       "Subset and Superset"
+    :description "Set A is a subset of set B, or equivalently B is a superset of A,
+    if A is \"contained\" inside B. A and B may coincide."
+    :tests       ["(clojure.set/superset? __ #{2})"
+                  "(clojure.set/subset? #{1} __)"
+                  "(clojure.set/superset? __ #{1 2})"
+                  "(clojure.set/subset? #{1 2} __)"]
+    :difficulty "elementary"
+    :tags ["set-theory"]}
+   {:id         37
+    :title       "Regular Expressions"
+    :tests       ["(= __ (apply str (re-seq #\"[A-Z]+\" \"bA1B3Ce \")))"]
+    :description "Regex patterns are supported with a special reader macro."
+    :difficulty "elementary"
+    :tags ["regex" "syntax"]}
    {:id         71
     :title       "Rearranging Code: ->"
     :tests       ["(= (__ (sort (rest (reverse [2 5 4 1 3 6]))))\n   (-> [2 5 4 1 3 6] reverse rest sort __)\n   5)"]
@@ -504,31 +529,7 @@ expressions and try to see how each of them produces the same result."
                   "(= __ (for [[x y] (partition 2 (range 20))]
                            (+ x y)))"]
     :difficulty "elementary"
-    :tags ["core-functions" "seqs"]}
-   {:id         156
-    :title       "Map Defaults"
-    :description "When retrieving values from a map, you can specify default
-values in case the key is not found:
-
-(= 2 (:foo {:bar 0, :baz 1} 2))
-
-However, what if you want the map itself to contain the default values? Write a
-function which takes a default value and a sequence of keys and constructs a map."
-    :tests       ["(= (__ 0 [:a :b :c]) {:a 0 :b 0 :c 0})"
-                  "(= (__ \"x\" [1 2 3]) {1 \"x\" 2 \"x\" 3 \"x\"})"
-                  "(= (__ [:a :b] [:foo :bar]) {:foo [:a :b] :bar [:a :b]})"]
-    :difficulty "elementary"
-    :tags ["seqs"]}
-   {:id         161
-    :title       "Subset and Superset"
-    :description "Set A is a subset of set B, or equivalently B is a superset of A,
-    if A is \"contained\" inside B. A and B may coincide."
-    :tests       ["(clojure.set/superset? __ #{2})"
-                  "(clojure.set/subset? #{1} __)"
-                  "(clojure.set/superset? __ #{1 2})"
-                  "(clojure.set/subset? #{1 2} __)"]
-    :difficulty "elementary"
-    :tags ["set-theory"]}])
+    :tags ["core-functions" "seqs"]}])
 
 (def problems
   (mapv (fn [problem n]
